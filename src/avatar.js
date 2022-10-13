@@ -16,6 +16,13 @@ const options = {
   topColor: ['Black', 'Blue01', 'Blue02', 'Blue03', 'Gray01', 'Gray02', 'Heather', 'PastelBlue', 'PastelGreen', 'PastelOrange', 'PastelRed', 'PastelYellow', 'Pink', 'Red', 'White'],
 }
 
+/**
+ * Take care, this implementation does not guarantee
+ * evenly distributed occurrence of porperty values.
+ * It is deterministic.
+ * If you want a faster hash, change the digest argument,
+ * but make sure the output has 14 or more bytes.
+ **/
 export async function avatarHash (str) {
   const hash = await crypto.subtle
     .digest('SHA-256', new TextEncoder('utf-8').encode(str))
