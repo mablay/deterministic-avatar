@@ -1,11 +1,15 @@
 <template>
   <div class="app-container">
     <div class="app">
-      <div class="avatar-container">
+      <div class="avatar-container" @click="showOptions = !showOptions">
+
         <avataaars
-          v-if="options"
+          v-if="options && !showOptions"
           v-bind="options"
         />
+        <pre v-if="showOptions">         -- click to toggle --
+
+{{options}}</pre>
       </div>
       <input
         autofocus
@@ -14,7 +18,7 @@
         v-on:input="update($event.target.value)"
         type="text"
       >
-
+      <p>A deterministic avatar is rendered based on your input.</p>
       <LinkCredits />
     </div>  
   </div>
@@ -34,7 +38,8 @@ export default {
   },
   data: () => ({
     text: '',
-    options: null
+    options: null,
+    showOptions: false
   }),
   methods: {
     async update (text) {
@@ -44,9 +49,9 @@ export default {
   },
   mounted () {
     this.update('')
-    setTimeout(() => this.update('f'), 200)
-    setTimeout(() => this.update('fo'), 400)
-    setTimeout(() => this.update('foo'), 600)
+    setTimeout(() => this.update('f'), 300)
+    setTimeout(() => this.update('fo'), 600)
+    setTimeout(() => this.update('foo'), 900)
   }
 }
 </script>
@@ -68,6 +73,9 @@ input.input {
 pre {
   color: white;
 }
+p {
+  color: white;
+}
 .app {
   width: 320px;
   height: 100%;
@@ -75,6 +83,7 @@ pre {
 }
 .avatar-container {
   padding-bottom: 12px;
+  height: 360px;
 }
 
 @media (min-height: 780px) {
