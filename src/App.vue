@@ -1,28 +1,43 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <input v-model="text" type="text">
+    <div class="app">
+      <avataaars v-if="options" v-bind="options"></avataaars>
+    </div>
+    <pre>{{options}}</pre>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Avataaars from 'vuejs-avataaars'
+import { avatarHash } from './avatar.js'
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    Avataaars
+  },
+  data: () => ({
+    text: 'foo',
+    options: null
+  }),
+  watch: {
+    async text () {
+      this.update()
+    }
+  },
+  methods: {
+    async update () {
+      this.options = await avatarHash(this.text)
+    }
+  },
+  mounted () {
+    this.update()
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+.app {
+  width: 320px;
 }
 </style>
