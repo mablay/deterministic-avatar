@@ -6,7 +6,7 @@ Deterministic text hash to avatar converter.
 
 If you want to generate an avatar based on a user ID or other serializable data, here's an example.
 
-For this example I used:
+Resources used:
 
 * [VueJS v2](https://v2.vuejs.org) as UI framework
 * [vuejs-avataaars](https://github.com/orgordin/vuejs-avataaars) from 
