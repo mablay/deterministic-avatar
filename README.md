@@ -1,5 +1,7 @@
 # Deterministic Avataaars
 
+<img style="float: right;" src="avatar.gif">
+
 Deterministic text hash to avatar converter.
 
 If you want to generate an avatar based on a user ID or other serializable data, here's an example.
